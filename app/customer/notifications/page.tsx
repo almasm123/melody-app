@@ -53,10 +53,16 @@ export default function NotificationsSettings() {
     try {
       localStorage.setItem(key, JSON.stringify({ email, sms, push }));
       setSaved(true);
-      toast({ title: "Preferences saved", description: "Your notification preferences have been saved." });
+      toast({
+        title: "Preferences saved",
+        description: "Your notification preferences have been saved.",
+      });
       setTimeout(() => setSaved(false), 2000);
     } catch (e) {
-      toast({ title: "Save failed", description: "Could not save preferences. Please try again.", });
+      toast({
+        title: "Save failed",
+        description: "Could not save preferences. Please try again.",
+      });
     }
   };
 
