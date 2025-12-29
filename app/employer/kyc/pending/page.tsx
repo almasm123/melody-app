@@ -1,9 +1,15 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Clock, CheckCircle2, AlertCircle, Home } from "lucide-react"
-import Link from "next/link"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Clock, CheckCircle2, AlertCircle, Home } from "lucide-react";
+import Link from "next/link";
 
 export default function EmployerKYCPending() {
   return (
@@ -14,8 +20,12 @@ export default function EmployerKYCPending() {
             <div className="w-20 h-20 mx-auto mb-4 bg-yellow-500/10 rounded-full flex items-center justify-center">
               <Clock className="h-10 w-10 text-yellow-600" />
             </div>
-            <CardTitle className="text-2xl">Employer KYC Under Review</CardTitle>
-            <CardDescription>Your application is being verified by our admin team</CardDescription>
+            <CardTitle className="text-2xl">
+              Employer KYC Under Review
+            </CardTitle>
+            <CardDescription>
+              Your application is being verified by our admin team
+            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="space-y-3">
@@ -23,15 +33,21 @@ export default function EmployerKYCPending() {
                 <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
                 <div>
                   <p className="text-sm font-medium">Documents Submitted</p>
-                  <p className="text-xs text-muted-foreground">All required documents uploaded successfully</p>
+                  <p className="text-xs text-muted-foreground">
+                    All required documents uploaded successfully
+                  </p>
                 </div>
               </div>
 
               <div className="flex items-center gap-3 p-3 bg-yellow-500/5 border border-yellow-500/20 rounded-lg">
                 <Clock className="h-5 w-5 text-yellow-600 flex-shrink-0" />
                 <div>
-                  <p className="text-sm font-medium">Admin Verification Pending</p>
-                  <p className="text-xs text-muted-foreground">Usually takes 24-48 hours</p>
+                  <p className="text-sm font-medium">
+                    Admin Verification Pending
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    Usually takes 24-48 hours
+                  </p>
                 </div>
               </div>
             </div>
@@ -40,7 +56,9 @@ export default function EmployerKYCPending() {
               <div className="flex gap-3">
                 <AlertCircle className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-sm font-medium text-blue-900">What happens next?</p>
+                  <p className="text-sm font-medium text-blue-900">
+                    What happens next?
+                  </p>
                   <ul className="text-xs text-blue-800 mt-2 space-y-1">
                     <li>• Admin will verify all your documents</li>
                     <li>• You'll receive SMS/notification once approved</li>
@@ -52,7 +70,11 @@ export default function EmployerKYCPending() {
             </div>
 
             <Link href="/">
-              <Button className="w-full bg-transparent" size="lg" variant="outline">
+              <Button
+                className="w-full bg-transparent"
+                size="lg"
+                variant="outline"
+              >
                 <Home className="h-4 w-4 mr-2" />
                 Back to Home
               </Button>
@@ -74,5 +96,5 @@ export default function EmployerKYCPending() {
         </Card>
       </div>
     </div>
-  )
+  );
 }

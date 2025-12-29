@@ -1,9 +1,15 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import {
   ArrowLeft,
   User,
@@ -18,42 +24,42 @@ import {
   LogOut,
   Briefcase,
   Calendar,
-} from "lucide-react"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
+} from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function SettingsPage() {
-  const router = useRouter()
-  const [user, setUser] = useState<any>(null)
+  const router = useRouter();
+  const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
-    const userData = localStorage.getItem("melody_current_user")
+    const userData = localStorage.getItem("melody_current_user");
     if (userData) {
-      setUser(JSON.parse(userData))
+      setUser(JSON.parse(userData));
     } else {
-      router.push("/auth")
+      router.push("/auth");
     }
-  }, [])
+  }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem("melody_current_user")
-    router.push("/")
-  }
+    localStorage.removeItem("melody_current_user");
+    router.push("/");
+  };
 
   if (!user) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="animate-spin h-8 w-8 border-4 border-primary border-t-transparent rounded-full" />
       </div>
-    )
+    );
   }
 
-  const hasFarmerRole = user.roles?.includes("farmer")
-  const hasDriverRole = user.roles?.includes("driver")
-  const hasEmployerRole = user.roles?.includes("employer")
-  const farmerPending = user.farmerStatus === "pending"
-  const driverPending = user.driverStatus === "pending"
-  const employerPending = user.employerStatus === "pending"
+  const hasFarmerRole = user.roles?.includes("farmer");
+  const hasDriverRole = user.roles?.includes("driver");
+  const hasEmployerRole = user.roles?.includes("employer");
+  const farmerPending = user.farmerStatus === "pending";
+  const driverPending = user.driverStatus === "pending";
+  const employerPending = user.employerStatus === "pending";
 
   return (
     <div className="min-h-screen bg-background">
@@ -108,11 +114,21 @@ export default function SettingsPage() {
               <ShieldCheck className="h-5 w-5 text-primary" />
               Upgrade Your Account
             </CardTitle>
-            <CardDescription>Expand your role to sell products or deliver orders</CardDescription>
+            <CardDescription>
+              Expand your role to sell products or deliver orders
+            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
             {/* Become a Farmer */}
-            <Link href={hasFarmerRole ? "/farmer" : farmerPending ? "/farmer/kyc/pending" : "/farmer/kyc"}>
+            <Link
+              href={
+                hasFarmerRole
+                  ? "/farmer"
+                  : farmerPending
+                  ? "/farmer/kyc/pending"
+                  : "/farmer/kyc"
+              }
+            >
               <Card className="hover:shadow-md transition-shadow cursor-pointer">
                 <CardContent className="p-4 flex items-center justify-between">
                   <div className="flex items-center gap-3">
@@ -125,14 +141,18 @@ export default function SettingsPage() {
                         {hasFarmerRole
                           ? "Farmer dashboard active"
                           : farmerPending
-                            ? "KYC pending approval"
-                            : "Sell your products directly"}
+                          ? "KYC pending approval"
+                          : "Sell your products directly"}
                       </p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    {hasFarmerRole && <Badge className="bg-green-500">Active</Badge>}
-                    {farmerPending && <Badge variant="secondary">Pending</Badge>}
+                    {hasFarmerRole && (
+                      <Badge className="bg-green-500">Active</Badge>
+                    )}
+                    {farmerPending && (
+                      <Badge variant="secondary">Pending</Badge>
+                    )}
                     <ChevronRight className="h-5 w-5 text-muted-foreground" />
                   </div>
                 </CardContent>
@@ -140,7 +160,15 @@ export default function SettingsPage() {
             </Link>
 
             {/* Become a Driver */}
-            <Link href={hasDriverRole ? "/driver" : driverPending ? "/driver/kyc/pending" : "/driver/kyc"}>
+            <Link
+              href={
+                hasDriverRole
+                  ? "/driver"
+                  : driverPending
+                  ? "/driver/kyc/pending"
+                  : "/driver/kyc"
+              }
+            >
               <Card className="hover:shadow-md transition-shadow cursor-pointer">
                 <CardContent className="p-4 flex items-center justify-between">
                   <div className="flex items-center gap-3">
@@ -153,14 +181,18 @@ export default function SettingsPage() {
                         {hasDriverRole
                           ? "Driver dashboard active"
                           : driverPending
-                            ? "KYC pending approval"
-                            : "Earn by delivering orders"}
+                          ? "KYC pending approval"
+                          : "Earn by delivering orders"}
                       </p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    {hasDriverRole && <Badge className="bg-green-500">Active</Badge>}
-                    {driverPending && <Badge variant="secondary">Pending</Badge>}
+                    {hasDriverRole && (
+                      <Badge className="bg-green-500">Active</Badge>
+                    )}
+                    {driverPending && (
+                      <Badge variant="secondary">Pending</Badge>
+                    )}
                     <ChevronRight className="h-5 w-5 text-muted-foreground" />
                   </div>
                 </CardContent>
@@ -168,7 +200,15 @@ export default function SettingsPage() {
             </Link>
 
             {/* Become an Employer */}
-            <Link href={hasEmployerRole ? "/employer" : employerPending ? "/employer/kyc/pending" : "/employer/kyc"}>
+            <Link
+              href={
+                hasEmployerRole
+                  ? "/employer"
+                  : employerPending
+                  ? "/employer/kyc/pending"
+                  : "/employer/kyc"
+              }
+            >
               <Card className="hover:shadow-md transition-shadow cursor-pointer">
                 <CardContent className="p-4 flex items-center justify-between">
                   <div className="flex items-center gap-3">
@@ -181,14 +221,18 @@ export default function SettingsPage() {
                         {hasEmployerRole
                           ? "Employer dashboard active"
                           : employerPending
-                            ? "KYC pending approval"
-                            : "Hire drivers and manage deliveries"}
+                          ? "KYC pending approval"
+                          : "Hire drivers and manage deliveries"}
                       </p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    {hasEmployerRole && <Badge className="bg-green-500">Active</Badge>}
-                    {employerPending && <Badge variant="secondary">Pending</Badge>}
+                    {hasEmployerRole && (
+                      <Badge className="bg-green-500">Active</Badge>
+                    )}
+                    {employerPending && (
+                      <Badge variant="secondary">Pending</Badge>
+                    )}
                     <ChevronRight className="h-5 w-5 text-muted-foreground" />
                   </div>
                 </CardContent>
@@ -227,24 +271,31 @@ export default function SettingsPage() {
               </Card>
             </Link>
 
-            <Card className="hover:shadow-md transition-shadow cursor-pointer">
-              <CardContent className="p-4 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <Bell className="h-5 w-5 text-primary" />
-                  <span className="font-medium">Notifications</span>
-                </div>
-                <ChevronRight className="h-5 w-5 text-muted-foreground" />
-              </CardContent>
-            </Card>
+            <Link href="/customer/notifications">
+              <Card className="hover:shadow-md transition-shadow cursor-pointer">
+                <CardContent className="p-4 flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <Bell className="h-5 w-5 text-primary" />
+                    <span className="font-medium">Notifications</span>
+                  </div>
+                  <ChevronRight className="h-5 w-5 text-muted-foreground" />
+                </CardContent>
+              </Card>
+            </Link>
           </CardContent>
         </Card>
 
         {/* Logout */}
-        <Button variant="destructive" className="w-full" size="lg" onClick={handleLogout}>
+        <Button
+          variant="destructive"
+          className="w-full"
+          size="lg"
+          onClick={handleLogout}
+        >
           <LogOut className="h-5 w-5 mr-2" />
           Logout
         </Button>
       </div>
     </div>
-  )
+  );
 }
