@@ -253,8 +253,8 @@ export default function ServicesPage() {
                     </div>
                   </div>
                 ) : (
-                  <Link href="/customer/settings/services/worker">
-                    <Button className="w-full">Create Worker Profile</Button>
+                  <Link href="/customer/settings/services/worker/register">
+                    <Button className="w-full">Become a Worker</Button>
                   </Link>
                 )}
               </CardContent>

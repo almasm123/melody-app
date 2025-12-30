@@ -12,14 +12,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Sprout,
-  ArrowLeft,
-  Smartphone,
-  Lock,
-  ShieldCheck,
-  UserPlus,
-} from "lucide-react";
+import { Sprout, ArrowLeft, Lock, ShieldCheck, UserPlus } from "lucide-react";
 import Link from "next/link";
 
 export default function AuthPage() {
@@ -169,15 +162,11 @@ export default function AuthPage() {
             </Link>
 
             <div className="flex items-center justify-center gap-3">
-              <div className="bg-primary/10 p-3 rounded-xl">
-                <Smartphone className="h-8 w-8 text-primary" />
-                <div className="flex items-center justify-center gap-2">
+              <div className="bg-primary/10 p-4 rounded-xl flex items-center justify-center">
+                <div className="flex items-center gap-2">
                   <Sprout className="h-6 w-6 text-primary" />
                   <span className="text-2xl font-bold">Melody</span>
                 </div>
-                <p className="text-sm text-muted-foreground font-medium mt-1">
-                  FROM OUR ROOTS
-                </p>
               </div>
             </div>
 
