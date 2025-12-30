@@ -865,7 +865,9 @@ export default function CustomerPage() {
                             ? product.weightRangeMin === product.weightRangeMax
                               ? `${product.weightRangeMin}`
                               : `${product.weightRangeMin}-${product.weightRangeMax}`
-                            : `${product.weightRangeMin}-${product.weightRangeMax}kg`}
+                            : `${product.weightRangeMin}-${
+                                product.weightRangeMax
+                              }${product.category === "milk" ? "L" : "kg"}`}
                         </div>
                         <div>
                           <span className="font-medium">Age:</span>{" "}
