@@ -18,7 +18,7 @@ export default function WishlistScreen() {
   const [wishlistItems, setWishlistItems] = useState([
     {
       id: 1,
-      farmer: "Raju Goud",
+      farmer: "Raju Goats",
       village: "Chevella",
       distance: "12 km",
       rating: 4.8,

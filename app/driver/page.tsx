@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Progress } from "@/components/ui/progress"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
 import {
   TruckIcon,
   MapPin,
@@ -17,11 +17,13 @@ import {
   Clock,
   Package,
   AlertCircle,
-} from "lucide-react"
-import Link from "next/link"
+} from "lucide-react";
+import Link from "next/link";
 
 export default function DriverPage() {
-  const [activeTab, setActiveTab] = useState<"available" | "active" | "completed">("available")
+  const [activeTab, setActiveTab] = useState<
+    "available" | "active" | "completed"
+  >("available");
 
   const driverProfile = {
     name: "Ramesh Kumar",
@@ -31,12 +33,12 @@ export default function DriverPage() {
     todayEarnings: 1250,
     todayDeliveries: 8,
     verified: true,
-  }
+  };
 
   const availableDeliveries = [
     {
       id: "DEL-4501",
-      farmer: "Raju Goud, Chevella",
+      farmer: "Raju Goats, Chevella",
       customer: "Rahul K., Gachibowli",
       product: "Goat - 24-26kg",
       distance: "18 km",
@@ -56,7 +58,7 @@ export default function DriverPage() {
       deliveryTime: "01:00 PM",
       priority: "high",
     },
-  ]
+  ];
 
   const activeDelivery = {
     id: "DEL-4498",
@@ -70,8 +72,9 @@ export default function DriverPage() {
     progress: 65,
     eta: "15 mins",
     currentLocation: "Near Wipro Circle",
-    deliveryAddress: "Flat 402, Rainbow Apartments, Madhapur, Hyderabad - 500081",
-  }
+    deliveryAddress:
+      "Flat 402, Rainbow Apartments, Madhapur, Hyderabad - 500081",
+  };
 
   const completedDeliveries = [
     {
@@ -90,7 +93,7 @@ export default function DriverPage() {
       time: "08:30 AM",
       rating: 5,
     },
-  ]
+  ];
 
   return (
     <div className="min-h-screen bg-background pb-20">
@@ -109,7 +112,9 @@ export default function DriverPage() {
                   <TruckIcon className="h-5 w-5 text-accent" />
                   Driver Dashboard
                 </h1>
-                <p className="text-sm text-muted-foreground">{driverProfile.name}</p>
+                <p className="text-sm text-muted-foreground">
+                  {driverProfile.name}
+                </p>
               </div>
             </div>
             <div className="flex items-center gap-2">
@@ -136,7 +141,9 @@ export default function DriverPage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground mb-1">Today's Earnings</p>
+                  <p className="text-sm text-muted-foreground mb-1">
+                    Today's Earnings
+                  </p>
                   <p className="text-2xl font-bold text-foreground flex items-center">
                     <IndianRupee className="h-5 w-5" />
                     {driverProfile.todayEarnings}
@@ -151,8 +158,12 @@ export default function DriverPage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground mb-1">Deliveries Today</p>
-                  <p className="text-2xl font-bold text-primary">{driverProfile.todayDeliveries}</p>
+                  <p className="text-sm text-muted-foreground mb-1">
+                    Deliveries Today
+                  </p>
+                  <p className="text-2xl font-bold text-primary">
+                    {driverProfile.todayDeliveries}
+                  </p>
                 </div>
                 <Package className="h-10 w-10 text-primary opacity-50" />
               </div>
@@ -164,7 +175,9 @@ export default function DriverPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-muted-foreground mb-1">Rating</p>
-                  <p className="text-2xl font-bold text-green-700">{driverProfile.rating}/5.0</p>
+                  <p className="text-2xl font-bold text-green-700">
+                    {driverProfile.rating}/5.0
+                  </p>
                 </div>
                 <CheckCircle2 className="h-10 w-10 text-green-600 opacity-50" />
               </div>
@@ -180,10 +193,15 @@ export default function DriverPage() {
                 <TruckIcon className="h-8 w-8 text-accent" />
                 <div>
                   <p className="font-bold">{driverProfile.vehicle}</p>
-                  <p className="text-sm text-muted-foreground">{driverProfile.vehicleNumber}</p>
+                  <p className="text-sm text-muted-foreground">
+                    {driverProfile.vehicleNumber}
+                  </p>
                 </div>
               </div>
-              <Badge variant="outline" className="bg-green-500/10 text-green-700 border-green-500/20">
+              <Badge
+                variant="outline"
+                className="bg-green-500/10 text-green-700 border-green-500/20"
+              >
                 Active
               </Badge>
             </div>
@@ -220,7 +238,10 @@ export default function DriverPage() {
           <div className="space-y-4">
             <h2 className="text-lg font-bold">New Delivery Requests</h2>
             {availableDeliveries.map((delivery) => (
-              <Card key={delivery.id} className="overflow-hidden border-l-4 border-l-primary">
+              <Card
+                key={delivery.id}
+                className="overflow-hidden border-l-4 border-l-primary"
+              >
                 <CardHeader className="pb-3 bg-muted/30">
                   <div className="flex items-start justify-between">
                     <CardTitle className="text-base">{delivery.id}</CardTitle>
@@ -238,7 +259,9 @@ export default function DriverPage() {
                       <MapPin className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                       <div className="flex-1">
                         <p className="text-sm font-medium">Pickup</p>
-                        <p className="text-sm text-muted-foreground">{delivery.farmer}</p>
+                        <p className="text-sm text-muted-foreground">
+                          {delivery.farmer}
+                        </p>
                         <p className="text-xs text-muted-foreground mt-1">
                           <Clock className="h-3 w-3 inline mr-1" />
                           {delivery.pickupTime}
@@ -250,7 +273,9 @@ export default function DriverPage() {
                       <Navigation className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
                       <div className="flex-1">
                         <p className="text-sm font-medium">Delivery</p>
-                        <p className="text-sm text-muted-foreground">{delivery.customer}</p>
+                        <p className="text-sm text-muted-foreground">
+                          {delivery.customer}
+                        </p>
                         <p className="text-xs text-muted-foreground mt-1">
                           <Clock className="h-3 w-3 inline mr-1" />
                           {delivery.deliveryTime}
@@ -262,12 +287,20 @@ export default function DriverPage() {
                   <div className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
                     <div>
                       <p className="text-sm font-medium">{delivery.product}</p>
-                      <p className="text-xs text-muted-foreground">Distance: {delivery.distance}</p>
+                      <p className="text-xs text-muted-foreground">
+                        Distance: {delivery.distance}
+                      </p>
                     </div>
-                    <p className="text-lg font-bold text-primary">₹{delivery.amount}</p>
+                    <p className="text-lg font-bold text-primary">
+                      ₹{delivery.amount}
+                    </p>
                   </div>
 
-                  <Button className="w-full" size="lg" onClick={() => setActiveTab("active")}>
+                  <Button
+                    className="w-full"
+                    size="lg"
+                    onClick={() => setActiveTab("active")}
+                  >
                     Accept Delivery
                   </Button>
                 </CardContent>
@@ -283,7 +316,9 @@ export default function DriverPage() {
               <CardHeader className="bg-primary/5">
                 <div className="flex items-center justify-between">
                   <CardTitle className="text-lg">{activeDelivery.id}</CardTitle>
-                  <Badge className="bg-blue-500/10 text-blue-700 border-blue-500/20">In Transit</Badge>
+                  <Badge className="bg-blue-500/10 text-blue-700 border-blue-500/20">
+                    In Transit
+                  </Badge>
                 </div>
               </CardHeader>
               <CardContent className="pt-6 space-y-6">
@@ -291,27 +326,41 @@ export default function DriverPage() {
                 <div className="space-y-2">
                   <div className="flex items-center justify-between text-sm">
                     <span className="font-medium">Delivery Progress</span>
-                    <span className="text-muted-foreground">ETA: {activeDelivery.eta}</span>
+                    <span className="text-muted-foreground">
+                      ETA: {activeDelivery.eta}
+                    </span>
                   </div>
                   <Progress value={activeDelivery.progress} className="h-3" />
-                  <p className="text-xs text-muted-foreground">Current: {activeDelivery.currentLocation}</p>
+                  <p className="text-xs text-muted-foreground">
+                    Current: {activeDelivery.currentLocation}
+                  </p>
                 </div>
 
                 {/* Product Info */}
                 <div className="p-4 bg-muted/50 rounded-lg">
                   <p className="font-semibold mb-1">{activeDelivery.product}</p>
-                  <p className="text-sm text-muted-foreground">Amount: ₹{activeDelivery.amount}</p>
+                  <p className="text-sm text-muted-foreground">
+                    Amount: ₹{activeDelivery.amount}
+                  </p>
                 </div>
 
                 {/* Pickup Info */}
                 <div className="space-y-3 pb-3 border-b">
-                  <p className="text-sm font-semibold text-muted-foreground">PICKED UP FROM</p>
+                  <p className="text-sm font-semibold text-muted-foreground">
+                    PICKED UP FROM
+                  </p>
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="font-medium">{activeDelivery.farmer}</p>
-                      <p className="text-sm text-muted-foreground">{activeDelivery.farmerPhone}</p>
+                      <p className="text-sm text-muted-foreground">
+                        {activeDelivery.farmerPhone}
+                      </p>
                     </div>
-                    <Button size="sm" variant="outline" className="gap-2 bg-transparent">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="gap-2 bg-transparent"
+                    >
                       <Phone className="h-4 w-4" />
                       Call
                     </Button>
@@ -320,16 +369,24 @@ export default function DriverPage() {
 
                 {/* Delivery Info */}
                 <div className="space-y-3">
-                  <p className="text-sm font-semibold text-muted-foreground">DELIVERING TO</p>
+                  <p className="text-sm font-semibold text-muted-foreground">
+                    DELIVERING TO
+                  </p>
                   <div>
                     <div className="flex items-center justify-between mb-2">
                       <p className="font-medium">{activeDelivery.customer}</p>
-                      <Button size="sm" variant="outline" className="gap-2 bg-transparent">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="gap-2 bg-transparent"
+                      >
                         <Phone className="h-4 w-4" />
                         Call
                       </Button>
                     </div>
-                    <p className="text-sm text-muted-foreground">{activeDelivery.deliveryAddress}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {activeDelivery.deliveryAddress}
+                    </p>
                   </div>
                 </div>
 
@@ -339,7 +396,10 @@ export default function DriverPage() {
                     <Navigation className="h-5 w-5" />
                     Navigate to Customer
                   </Button>
-                  <Button className="w-full gap-2 bg-secondary hover:bg-secondary/90" size="lg">
+                  <Button
+                    className="w-full gap-2 bg-secondary hover:bg-secondary/90"
+                    size="lg"
+                  >
                     <Camera className="h-5 w-5" />
                     Upload Delivery Photo
                   </Button>
@@ -348,8 +408,8 @@ export default function DriverPage() {
                     variant="outline"
                     size="lg"
                     onClick={() => {
-                      alert("Order marked as delivered!")
-                      setActiveTab("completed")
+                      alert("Order marked as delivered!");
+                      setActiveTab("completed");
                     }}
                   >
                     <CheckCircle2 className="h-5 w-5" />
@@ -367,7 +427,8 @@ export default function DriverPage() {
                   <div>
                     <p className="text-sm font-medium">GPS Tracking Active</p>
                     <p className="text-xs text-muted-foreground">
-                      Your location is being shared with customer for transparency
+                      Your location is being shared with customer for
+                      transparency
                     </p>
                   </div>
                 </div>
@@ -392,12 +453,20 @@ export default function DriverPage() {
                           Delivered
                         </Badge>
                       </div>
-                      <p className="text-sm text-muted-foreground mb-1">Customer: {delivery.customer}</p>
-                      <p className="text-sm text-muted-foreground mb-1">{delivery.product}</p>
-                      <p className="text-xs text-muted-foreground">{delivery.time}</p>
+                      <p className="text-sm text-muted-foreground mb-1">
+                        Customer: {delivery.customer}
+                      </p>
+                      <p className="text-sm text-muted-foreground mb-1">
+                        {delivery.product}
+                      </p>
+                      <p className="text-xs text-muted-foreground">
+                        {delivery.time}
+                      </p>
                     </div>
                     <div className="text-right">
-                      <p className="font-bold text-primary mb-2">₹{delivery.amount}</p>
+                      <p className="font-bold text-primary mb-2">
+                        ₹{delivery.amount}
+                      </p>
                       <div className="flex items-center gap-1">
                         {[...Array(delivery.rating)].map((_, i) => (
                           <span key={i} className="text-yellow-500">
@@ -414,5 +483,5 @@ export default function DriverPage() {
         )}
       </div>
     </div>
-  )
+  );
 }

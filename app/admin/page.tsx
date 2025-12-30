@@ -73,7 +73,7 @@ export default function AdminPage() {
     {
       id: "ORD-2401",
       customer: "Rahul K.",
-      farmer: "Raju Goud",
+      farmer: "Raju Goats",
       driver: "Ramesh Kumar",
       product: "Goat - 24-26kg",
       amount: 18750,
@@ -111,14 +111,14 @@ export default function AdminPage() {
   const stockProducts = [
     {
       id: "P-1",
-      farmer: "Raju Goud",
+      farmer: "Raju Goat",
       type: "Goat",
       breed: "Osmanabadi",
       weightRangeMin: 24,
       weightRangeMax: 26,
       minimumGuaranteedWeight: 24,
       available: 5,
-      price: 750,
+      price: 18000,
     },
     {
       id: "P-2",

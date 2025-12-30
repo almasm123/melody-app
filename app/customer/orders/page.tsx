@@ -19,7 +19,7 @@ export default function OrdersPage() {
   const activeOrders = [
     {
       id: "ORD-2401",
-      farmer: "Raju Goud, Chevella",
+      farmer: "Raju Goats Chevella",
       product: "Goat - 24-26kg",
       amount: 18750,
       status: "in_transit",

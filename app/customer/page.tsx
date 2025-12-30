@@ -16,7 +16,6 @@ import {
   Star,
   ShieldCheck,
   Video,
-  TruckIcon,
   Home,
   Beef,
   Milk,
@@ -27,10 +26,11 @@ import {
   Plus,
   Minus,
   X,
-  Filter,
   Users,
   Calendar,
   Package,
+  Filter,
+  Truck,
 } from "lucide-react";
 import Link from "next/link";
 import { useCart } from "@/hooks/use-cart";
@@ -74,7 +74,7 @@ export default function CustomerPage() {
   const farmers = [
     {
       id: 1,
-      name: "Raju Goud",
+      name: "Raju Goats",
       village: "Chevella",
       distance: 12,
       rating: 4.8,
@@ -88,9 +88,20 @@ export default function CustomerPage() {
           weightRangeMax: 28,
           age: "8 months",
           available: 8,
-          price: 750,
+          price: 22000,
           category: "mutton",
           bulkAvailable: true,
+        },
+        {
+          type: "Mutton ",
+          breed: "ready to cook",
+          weightRangeMin: 1,
+          weightRangeMax: 1,
+          age: "Daily Fresh",
+          available: 25,
+          price: 750,
+          category: "mutton",
+          bulkAvailable: false,
         },
       ],
       image: "/healthy-goat-farm-india.jpg",
@@ -736,7 +747,7 @@ export default function CustomerPage() {
               <span className="font-medium">Video Verification</span>
             </div>
             <div className="flex items-center gap-2">
-              <TruckIcon className="h-4 w-4 text-primary" />
+              <Truck className="h-4 w-4 text-primary" />
               <span className="font-medium">Live Tracking</span>
             </div>
           </div>
@@ -838,7 +849,11 @@ export default function CustomerPage() {
                         </div>
                         <div className="text-right">
                           <p className="text-lg font-bold text-primary">
-                            ₹{product.price}/kg
+                            {farmer.name === "Raju Goats" ? (
+                              <>₹{product.price} </>
+                            ) : (
+                              <>₹{product.price}/kg</>
+                            )}
                           </p>
                         </div>
                       </div>
@@ -846,10 +861,11 @@ export default function CustomerPage() {
                       <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground mb-3">
                         <div>
                           <span className="font-medium">Weight:</span>{" "}
-                          {product.weightRangeMin +
-                            "-" +
-                            product.weightRangeMax +
-                            "kg"}
+                          {farmer.name === "Raju Goats"
+                            ? product.weightRangeMin === product.weightRangeMax
+                              ? `${product.weightRangeMin}`
+                              : `${product.weightRangeMin}-${product.weightRangeMax}`
+                            : `${product.weightRangeMin}-${product.weightRangeMax}kg`}
                         </div>
                         <div>
                           <span className="font-medium">Age:</span>{" "}

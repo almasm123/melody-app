@@ -1,14 +1,20 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import Link from "next/link"
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import Link from "next/link";
 import {
   Plus,
   Video,
@@ -22,30 +28,30 @@ import {
   ArrowLeft,
   TrendingUp,
   Clock,
-} from "lucide-react"
+} from "lucide-react";
 
 export default function FarmerPage() {
-  const [showAddStock, setShowAddStock] = useState(false)
+  const [showAddStock, setShowAddStock] = useState(false);
 
   // Add Stock form state
-  const [animalType, setAnimalType] = useState("")
-  const [breed, setBreed] = useState("")
-  const [age, setAge] = useState("")
-  const [weightRangeMin, setWeightRangeMin] = useState<number>(0)
-  const [weightRangeMax, setWeightRangeMax] = useState<number>(0)
-  const [quantity, setQuantity] = useState<number>(1)
-  const [price, setPrice] = useState<number>(0)
-  const [weightError, setWeightError] = useState("")
+  const [animalType, setAnimalType] = useState("");
+  const [breed, setBreed] = useState("");
+  const [age, setAge] = useState("");
+  const [weightRangeMin, setWeightRangeMin] = useState<number>(0);
+  const [weightRangeMax, setWeightRangeMax] = useState<number>(0);
+  const [quantity, setQuantity] = useState<number>(1);
+  const [price, setPrice] = useState<number>(0);
+  const [weightError, setWeightError] = useState("");
 
   const farmerProfile = {
-    name: "Raju Goud",
+    name: "Raju GoatsS",
     village: "Chevella",
     phone: "+91 98765 43210",
     verified: true,
     totalEarnings: 45600,
     pendingOrders: 3,
     completedOrders: 28,
-  }
+  };
 
   // Initial sample stock
   const initialStockItems = [
@@ -75,27 +81,29 @@ export default function FarmerPage() {
       status: "available",
       videoUploaded: false,
     },
-  ]
+  ];
 
-  const [stockItems, setStockItems] = useState(initialStockItems)
-  const [isSubmittingStock, setIsSubmittingStock] = useState(false)
+  const [stockItems, setStockItems] = useState(initialStockItems);
+  const [isSubmittingStock, setIsSubmittingStock] = useState(false);
 
   // Fetch stock from API on component mount
   useEffect(() => {
     const fetchStock = async () => {
       try {
-        const response = await fetch('/api/farmer/stock?farmerId=default-farmer')
-        const data = await response.json()
+        const response = await fetch(
+          "/api/farmer/stock?farmerId=default-farmer"
+        );
+        const data = await response.json();
         if (response.ok && data.success) {
-          setStockItems(data.stock)
+          setStockItems(data.stock);
         }
       } catch (error) {
-        console.error('Error fetching stock:', error)
+        console.error("Error fetching stock:", error);
       }
-    }
+    };
 
-    fetchStock()
-  }, [])
+    fetchStock();
+  }, []);
 
   const orders = [
     {
@@ -125,20 +133,20 @@ export default function FarmerPage() {
       date: "2025-12-23",
       time: "08:00 AM",
     },
-  ]
+  ];
 
   const getStatusColor = (status: string) => {
     switch (status) {
       case "pending":
-        return "bg-yellow-500/10 text-yellow-700 border-yellow-500/20"
+        return "bg-yellow-500/10 text-yellow-700 border-yellow-500/20";
       case "accepted":
-        return "bg-blue-500/10 text-blue-700 border-blue-500/20"
+        return "bg-blue-500/10 text-blue-700 border-blue-500/20";
       case "completed":
-        return "bg-green-500/10 text-green-700 border-green-500/20"
+        return "bg-green-500/10 text-green-700 border-green-500/20";
       default:
-        return "bg-gray-500/10 text-gray-700 border-gray-500/20"
+        return "bg-gray-500/10 text-gray-700 border-gray-500/20";
     }
-  }
+  };
 
   return (
     <div className="min-h-screen bg-background pb-20">
@@ -153,8 +161,12 @@ export default function FarmerPage() {
                 </Button>
               </Link>
               <div>
-                <h1 className="text-xl font-bold text-secondary">Farmer Dashboard</h1>
-                <p className="text-sm text-muted-foreground">{farmerProfile.name}</p>
+                <h1 className="text-xl font-bold text-secondary">
+                  Farmer Dashboard
+                </h1>
+                <p className="text-sm text-muted-foreground">
+                  {farmerProfile.name}
+                </p>
               </div>
             </div>
             <div className="flex items-center gap-2">
@@ -181,7 +193,9 @@ export default function FarmerPage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground mb-1">Total Earnings</p>
+                  <p className="text-sm text-muted-foreground mb-1">
+                    Total Earnings
+                  </p>
                   <p className="text-2xl font-bold text-primary flex items-center">
                     <IndianRupee className="h-5 w-5" />
                     {farmerProfile.totalEarnings.toLocaleString()}
@@ -196,8 +210,12 @@ export default function FarmerPage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground mb-1">Pending Orders</p>
-                  <p className="text-2xl font-bold text-yellow-700">{farmerProfile.pendingOrders}</p>
+                  <p className="text-sm text-muted-foreground mb-1">
+                    Pending Orders
+                  </p>
+                  <p className="text-2xl font-bold text-yellow-700">
+                    {farmerProfile.pendingOrders}
+                  </p>
                 </div>
                 <Clock className="h-10 w-10 text-yellow-600 opacity-50" />
               </div>
@@ -208,8 +226,12 @@ export default function FarmerPage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground mb-1">Completed</p>
-                  <p className="text-2xl font-bold text-green-700">{farmerProfile.completedOrders}</p>
+                  <p className="text-sm text-muted-foreground mb-1">
+                    Completed
+                  </p>
+                  <p className="text-2xl font-bold text-green-700">
+                    {farmerProfile.completedOrders}
+                  </p>
                 </div>
                 <CheckCircle2 className="h-10 w-10 text-green-600 opacity-50" />
               </div>
@@ -248,11 +270,19 @@ export default function FarmerPage() {
                   <div className="space-y-4 py-4">
                     <div className="space-y-2">
                       <Label>Animal Type</Label>
-                      <Input placeholder="e.g., Goat, Sheep, Chicken" value={animalType} onChange={(e) => setAnimalType(e.target.value)} />
+                      <Input
+                        placeholder="e.g., Goat, Sheep, Chicken"
+                        value={animalType}
+                        onChange={(e) => setAnimalType(e.target.value)}
+                      />
                     </div>
                     <div className="space-y-2">
                       <Label>Breed</Label>
-                      <Input placeholder="e.g., Osmanabadi, Nellore" value={breed} onChange={(e) => setBreed(e.target.value)} />
+                      <Input
+                        placeholder="e.g., Osmanabadi, Nellore"
+                        value={breed}
+                        onChange={(e) => setBreed(e.target.value)}
+                      />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-2">
@@ -261,7 +291,10 @@ export default function FarmerPage() {
                           type="number"
                           placeholder="12"
                           value={weightRangeMin}
-                          onChange={(e) => { setWeightRangeMin(Number(e.target.value)); setWeightError(""); }}
+                          onChange={(e) => {
+                            setWeightRangeMin(Number(e.target.value));
+                            setWeightError("");
+                          }}
                         />
                       </div>
                       <div className="space-y-2">
@@ -270,25 +303,47 @@ export default function FarmerPage() {
                           type="number"
                           placeholder="15"
                           value={weightRangeMax}
-                          onChange={(e) => { setWeightRangeMax(Number(e.target.value)); setWeightError(""); }}
+                          onChange={(e) => {
+                            setWeightRangeMax(Number(e.target.value));
+                            setWeightError("");
+                          }}
                         />
                       </div>
                     </div>
                     <p className="text-xs text-muted-foreground mt-1">
-                      <strong>Weight range measured using MELODY-allocated weighing machine.</strong>
+                      <strong>
+                        Weight range measured using MELODY-allocated weighing
+                        machine.
+                      </strong>
                     </p>
-                    <p className="text-xs text-muted-foreground mt-1">Minimum guaranteed weight will be automatically set to the Minimum Weight and cannot be edited.</p>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Minimum guaranteed weight will be automatically set to the
+                      Minimum Weight and cannot be edited.
+                    </p>
                     <div className="space-y-2">
                       <Label>Age (months)</Label>
-                      <Input type="number" placeholder="8" value={age} onChange={(e) => setAge(e.target.value)} />
+                      <Input
+                        type="number"
+                        placeholder="8"
+                        value={age}
+                        onChange={(e) => setAge(e.target.value)}
+                      />
                     </div>
                     <div className="space-y-2">
                       <Label>Quantity Available</Label>
-                      <Input type="number" placeholder="5" value={quantity} onChange={(e) => setQuantity(Number(e.target.value))} />
+                      <Input
+                        type="number"
+                        placeholder="5"
+                        value={quantity}
+                        onChange={(e) => setQuantity(Number(e.target.value))}
+                      />
                     </div>
                     <div className="space-y-2">
                       <Label>Upload Verification Video</Label>
-                      <Button variant="outline" className="w-full gap-2 bg-transparent">
+                      <Button
+                        variant="outline"
+                        className="w-full gap-2 bg-transparent"
+                      >
                         <Camera className="h-4 w-4" />
                         Record Video
                       </Button>
@@ -306,22 +361,26 @@ export default function FarmerPage() {
                       onClick={async () => {
                         // Validate
                         if (!weightRangeMin || !weightRangeMax) {
-                          setWeightError("Please enter both minimum and maximum weights.")
-                          return
+                          setWeightError(
+                            "Please enter both minimum and maximum weights."
+                          );
+                          return;
                         }
                         if (weightRangeMin >= weightRangeMax) {
-                          setWeightError("Minimum weight must be less than maximum weight.")
-                          return
+                          setWeightError(
+                            "Minimum weight must be less than maximum weight."
+                          );
+                          return;
                         }
 
-                        setIsSubmittingStock(true)
-                        setWeightError("")
+                        setIsSubmittingStock(true);
+                        setWeightError("");
 
                         try {
-                          const response = await fetch('/api/farmer/stock', {
-                            method: 'POST',
+                          const response = await fetch("/api/farmer/stock", {
+                            method: "POST",
                             headers: {
-                              'Content-Type': 'application/json',
+                              "Content-Type": "application/json",
                             },
                             body: JSON.stringify({
                               animalType,
@@ -331,36 +390,41 @@ export default function FarmerPage() {
                               age,
                               quantity,
                               price,
-                              farmerId: 'default-farmer' // In real app, get from auth
-                            })
-                          })
+                              farmerId: "default-farmer", // In real app, get from auth
+                            }),
+                          });
 
-                          const data = await response.json()
+                          const data = await response.json();
 
                           if (response.ok && data.success) {
                             // Add to local state for immediate UI update
-                            setStockItems((prev) => [data.stockItem, ...prev])
+                            setStockItems((prev) => [data.stockItem, ...prev]);
                             // Reset form and close
-                            setAnimalType("")
-                            setBreed("")
-                            setAge("")
-                            setWeightRangeMin(0)
-                            setWeightRangeMax(0)
-                            setQuantity(1)
-                            setPrice(0)
-                            setWeightError("")
-                            setShowAddStock(false)
+                            setAnimalType("");
+                            setBreed("");
+                            setAge("");
+                            setWeightRangeMin(0);
+                            setWeightRangeMax(0);
+                            setQuantity(1);
+                            setPrice(0);
+                            setWeightError("");
+                            setShowAddStock(false);
                           } else {
-                            setWeightError(data.error || "Failed to add stock")
+                            setWeightError(data.error || "Failed to add stock");
                           }
                         } catch (error) {
-                          console.error('Error adding stock:', error)
-                          setWeightError("Network error. Please try again.")
+                          console.error("Error adding stock:", error);
+                          setWeightError("Network error. Please try again.");
                         } finally {
-                          setIsSubmittingStock(false)
+                          setIsSubmittingStock(false);
                         }
                       }}
-                      disabled={!weightRangeMin || !weightRangeMax || weightRangeMin >= weightRangeMax || isSubmittingStock}
+                      disabled={
+                        !weightRangeMin ||
+                        !weightRangeMax ||
+                        weightRangeMin >= weightRangeMax ||
+                        isSubmittingStock
+                      }
                     >
                       {isSubmittingStock ? "Adding..." : "Add to Stock"}
                     </Button>
@@ -375,7 +439,9 @@ export default function FarmerPage() {
                   <div className="flex items-start justify-between">
                     <div>
                       <CardTitle className="text-lg">{item.type}</CardTitle>
-                      <p className="text-sm text-muted-foreground">{item.breed}</p>
+                      <p className="text-sm text-muted-foreground">
+                        {item.breed}
+                      </p>
                     </div>
                     <Badge
                       className={
@@ -392,7 +458,12 @@ export default function FarmerPage() {
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
                     <div>
                       <p className="text-xs text-muted-foreground">Weight</p>
-                      <p className="font-semibold">{item.weightRangeMin !== undefined && item.weightRangeMax !== undefined ? `${item.weightRangeMin}-${item.weightRangeMax}kg` : "N/A"}</p>
+                      <p className="font-semibold">
+                        {item.weightRangeMin !== undefined &&
+                        item.weightRangeMax !== undefined
+                          ? `${item.weightRangeMin}-${item.weightRangeMax}kg`
+                          : "N/A"}
+                      </p>
                     </div>
                     <div>
                       <p className="text-xs text-muted-foreground">Age</p>
@@ -404,7 +475,9 @@ export default function FarmerPage() {
                     </div>
                     <div>
                       <p className="text-xs text-muted-foreground">Price/kg</p>
-                      <p className="font-semibold text-primary">₹{item.price}</p>
+                      <p className="font-semibold text-primary">
+                        ₹{item.price}
+                      </p>
                     </div>
                   </div>
 
@@ -413,10 +486,18 @@ export default function FarmerPage() {
                       <>
                         <CheckCircle2 className="h-5 w-5 text-green-600" />
                         <div className="flex-1">
-                          <p className="text-sm font-medium text-green-700">Video Verified</p>
-                          <p className="text-xs text-muted-foreground">Admin approved</p>
+                          <p className="text-sm font-medium text-green-700">
+                            Video Verified
+                          </p>
+                          <p className="text-xs text-muted-foreground">
+                            Admin approved
+                          </p>
                         </div>
-                        <Button size="sm" variant="outline" className="gap-1 bg-transparent">
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          className="gap-1 bg-transparent"
+                        >
                           <Video className="h-4 w-4" />
                           View
                         </Button>
@@ -425,10 +506,17 @@ export default function FarmerPage() {
                       <>
                         <AlertCircle className="h-5 w-5 text-yellow-600" />
                         <div className="flex-1">
-                          <p className="text-sm font-medium text-yellow-700">Video Required</p>
-                          <p className="text-xs text-muted-foreground">Upload for verification</p>
+                          <p className="text-sm font-medium text-yellow-700">
+                            Video Required
+                          </p>
+                          <p className="text-xs text-muted-foreground">
+                            Upload for verification
+                          </p>
                         </div>
-                        <Button size="sm" className="gap-1 bg-secondary hover:bg-secondary/90">
+                        <Button
+                          size="sm"
+                          className="gap-1 bg-secondary hover:bg-secondary/90"
+                        >
                           <Upload className="h-4 w-4" />
                           Upload
                         </Button>
@@ -455,9 +543,14 @@ export default function FarmerPage() {
                       </p>
                     </div>
                     <Badge className={getStatusColor(order.status)}>
-                      {order.status === "pending" && <Clock className="h-3 w-3 mr-1" />}
-                      {order.status === "completed" && <CheckCircle2 className="h-3 w-3 mr-1" />}
-                      {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
+                      {order.status === "pending" && (
+                        <Clock className="h-3 w-3 mr-1" />
+                      )}
+                      {order.status === "completed" && (
+                        <CheckCircle2 className="h-3 w-3 mr-1" />
+                      )}
+                      {order.status.charAt(0).toUpperCase() +
+                        order.status.slice(1)}
                     </Badge>
                   </div>
                 </CardHeader>
@@ -465,12 +558,16 @@ export default function FarmerPage() {
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-sm text-muted-foreground">Customer</p>
+                        <p className="text-sm text-muted-foreground">
+                          Customer
+                        </p>
                         <p className="font-semibold">{order.customer}</p>
                       </div>
                       <div className="text-right">
                         <p className="text-sm text-muted-foreground">Amount</p>
-                        <p className="font-bold text-primary text-lg">₹{order.amount.toLocaleString()}</p>
+                        <p className="font-bold text-primary text-lg">
+                          ₹{order.amount.toLocaleString()}
+                        </p>
                       </div>
                     </div>
 
@@ -480,17 +577,28 @@ export default function FarmerPage() {
 
                     {order.status === "pending" && (
                       <div className="flex gap-2 pt-2">
-                        <Button size="sm" className="flex-1 bg-primary hover:bg-primary/90">
+                        <Button
+                          size="sm"
+                          className="flex-1 bg-primary hover:bg-primary/90"
+                        >
                           Accept Order
                         </Button>
-                        <Button size="sm" variant="outline" className="flex-1 bg-transparent">
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          className="flex-1 bg-transparent"
+                        >
                           Decline
                         </Button>
                       </div>
                     )}
 
                     {order.status === "accepted" && (
-                      <Button size="sm" className="w-full gap-2" variant="secondary">
+                      <Button
+                        size="sm"
+                        className="w-full gap-2"
+                        variant="secondary"
+                      >
                         <Video className="h-4 w-4" />
                         Upload Pickup Video
                       </Button>
@@ -510,7 +618,10 @@ export default function FarmerPage() {
               <div>
                 <h3 className="font-bold mb-2">Important Guidelines</h3>
                 <ul className="text-sm text-muted-foreground space-y-1">
-                  <li>• Upload clear verification videos showing animal condition and weight</li>
+                  <li>
+                    • Upload clear verification videos showing animal condition
+                    and weight
+                  </li>
                   <li>• Accept orders within 2 hours for fast delivery</li>
                   <li>• Keep stock updated to avoid cancellations</li>
                   <li>• Payments processed within 1-3 days after delivery</li>
@@ -521,5 +632,5 @@ export default function FarmerPage() {
         </Card>
       </div>
     </div>
-  )
+  );
 }

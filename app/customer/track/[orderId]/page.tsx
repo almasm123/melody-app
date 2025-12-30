@@ -12,7 +12,7 @@ export default function TrackOrderPage() {
   const orderData = {
     orderId: "ORD-2401",
     product: "Goat - 24-26kg",
-    farmer: "Raju Goud, Chevella",
+    farmer: "Raju Goats, Chevella",
     amount: 18750,
   };
 

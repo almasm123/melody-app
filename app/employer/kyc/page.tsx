@@ -90,7 +90,7 @@ export default function EmployerKYC() {
                   Employer KYC Verification
                 </CardTitle>
                 <CardDescription>
-                  Complete your profile to start hiring for Catering workers
+                  Complete your profile to start hiring for All workers
                 </CardDescription>
               </div>
             </div>

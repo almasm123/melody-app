@@ -21,8 +21,6 @@ export default function EmployerDashboard() {
     const u = localStorage.getItem("melody_current_user");
     if (!u) return router.push("/auth");
     const parsed = JSON.parse(u);
-    if (!parsed.roles?.includes("employer"))
-      return router.push("/customer/settings/services");
     setUser(parsed);
   }, [router]);
 
@@ -64,26 +62,40 @@ export default function EmployerDashboard() {
             </div>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <Link href="/employer/post-requirement">
-                <Button
-                  size="lg"
-                  className="w-full flex items-center gap-3 justify-center"
-                >
-                  <FilePlus className="h-4 w-4" /> Post Requirement
-                </Button>
-              </Link>
+            {user.roles?.includes("employer") ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <Link href="/employer/post-requirement">
+                  <Button
+                    size="lg"
+                    className="w-full flex items-center gap-3 justify-center"
+                  >
+                    <FilePlus className="h-4 w-4" /> Post Requirement
+                  </Button>
+                </Link>
 
-              <Link href="/employer/my-requirements">
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="w-full flex items-center gap-3 justify-center"
-                >
-                  <Calendar className="h-4 w-4" /> My Requirements
-                </Button>
-              </Link>
-            </div>
+                <Link href="/employer/my-requirements">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="w-full flex items-center gap-3 justify-center"
+                  >
+                    <Calendar className="h-4 w-4" /> My Requirements
+                  </Button>
+                </Link>
+              </div>
+            ) : (
+              <div className="text-center space-y-4">
+                <p className="text-sm text-muted-foreground">
+                  You are not registered as an Employer yet. Register to post
+                  and schedule requirements for events, catering and staff.
+                </p>
+                <div className="flex items-center justify-center gap-3">
+                  <Link href="/employer/kyc">
+                    <Button size="lg">Become an Employer</Button>
+                  </Link>
+                </div>
+              </div>
+            )}
           </CardContent>
         </Card>
       </div>
